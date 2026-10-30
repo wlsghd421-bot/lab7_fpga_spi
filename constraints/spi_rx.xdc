@@ -1,0 +1,20 @@
+# 과제10: MCU -> FPGA SPI 슬레이브 수신 (50 MHz, 보드 클록 설정 확인)
+set_property PACKAGE_PIN B6 [get_ports clk_50mhz]
+set_property PACKAGE_PIN N4 [get_ports rst_p]
+# 핀맵 EXT1/EXT2/EXT3 = G10 / C10 / F11
+set_property PACKAGE_PIN G10 [get_ports spi_sck]
+set_property PACKAGE_PIN C10 [get_ports spi_mosi]
+set_property PACKAGE_PIN F11 [get_ports spi_cs_n]
+set_property PACKAGE_PIN F6  [get_ports pc_txd]
+# 수신값 LED (CLED_D1..D8)
+set_property PACKAGE_PIN L4 [get_ports {led[0]}]
+set_property PACKAGE_PIN L1 [get_ports {led[1]}]
+set_property PACKAGE_PIN M7 [get_ports {led[2]}]
+set_property PACKAGE_PIN M4 [get_ports {led[3]}]
+set_property PACKAGE_PIN M3 [get_ports {led[4]}]
+set_property PACKAGE_PIN M2 [get_ports {led[5]}]
+set_property PACKAGE_PIN M1 [get_ports {led[6]}]
+set_property PACKAGE_PIN N7 [get_ports {led[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports *]
+create_clock -name clk_50mhz -period 20.000 [get_ports clk_50mhz]
+set_false_path -from [get_ports {rst_p spi_sck spi_mosi spi_cs_n}]
